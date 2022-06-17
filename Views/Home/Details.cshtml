@@ -1,0 +1,49 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex align-items-center">
+                <h1 class="mt-3 mb-3">Dettagli post</h1>
+            </div>
+            <div class="post-single-image-container">
+                <img class="js_input_image">
+            </div>
+            <div class="mb-3">
+                <strong>Titolo:</strong>
+                <input class="js_input_title form-control d-block w-100" readonly />
+            </div>
+            <div class="mb-3">
+                <strong>Contenuto:</strong>
+                <textarea rows="10" class="js_input_description form-control d-block w-100" readonly ></textarea>
+            </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+<script type="text/javascript">
+
+    // leggiamo dall'url l'id dell'elemento
+    const itemId = location.href.substring(location.href.lastIndexOf('/') + 1);
+
+    // carichiamo i dati dell'elemento
+    axios.get(`https://localhost:5000/api/posts/${itemId}`).then((res) => {
+
+        console.log('risultato ok', res.data);
+
+        document.querySelector('.js_input_title').value = res.data.title;
+        document.querySelector('.js_input_description').value = res.data.description;
+        document.querySelector('.js_input_image').src = res.data.image;
+
+    }).catch((res) => {
+
+        console.error('risultato errore', res);
+    });
+
+</script>
+
+}
