@@ -33,6 +33,15 @@ namespace csharp_blog_frontend.Controllers
         [HttpGet]
         public IActionResult Details(int id)
         {
+            ViewData["id"] = id;
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult DetailsBlob(int id)
+        {
+            ViewData["id"] = id;
+
             return View();
         }
 
