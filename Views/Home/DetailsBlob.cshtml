@@ -24,6 +24,9 @@
 
 <script type="text/javascript">
         
+
+    
+
         loaddati();
         function loaddati()
         {
@@ -34,11 +37,11 @@
             if (res.data.length == 0) {
                 console.log("Errore");
             } else {
-               
+                    
                     document.querySelector('.dettaglio').innerHTML = 
                         `
                         <div class="card" style="width: 90%; margin:auto">
-                            <img src="data:image/png;base64,${ res.data.imageBytes}" class="card-img-top" alt="...">
+                            <img  class="card-img-top my_image" style=" max-heigth: 50px" alt="...">
                              <div class="card-body">
                              <h5 class="card-title">${ res.data.title}</h5>
                               <p class="card-text">${ res.data.description}</p>
@@ -48,6 +51,7 @@
                         </div>
                        
                         `;
+                    document.querySelector('.my_image').src = res.data.image;
                 
             }
         });
